@@ -5,20 +5,27 @@
 </head>
 <body>
 	<script type="text/javascript">
-		const game = ['rock', 'paper', 'scissors'];
-
-		let playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
-		let computerSelection = computerPlay();
-
+		const choices = ['rock', 'paper', 'scissors'];
 		let playerScore = 0;
 		let computerScore = 0;
+		let winner = "";
 
 		function computerPlay() {
-			return game[Math.floor(Math.random() * game.length)];
+			return choices[Math.floor(Math.random() * choices.length)];
 		}
+
+		let playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
+		console.log("Round #1");
+		console.log("Player's selection: " + playerSelection + ".");
+
+		let computerSelection = computerPlay();
+		
+		console.log("Computer's selection: " + computerSelection + ".");
 
 		function playRound(playerSelection, computerSelection) {
 			if (playerSelection === computerSelection) {
+				playerScore += 1;
+				computerScore += 1;
 				return "It's a tie! Play again.";
 			} else if (playerSelection === 'rock' && computerSelection === 'scissors') {
 				playerScore += 1;
@@ -40,8 +47,58 @@
 				return 'You lose! Scissors cut paper.';
 			}
 		}
+
+		function game() {
+			console.log(playRound(playerSelection, computerSelection));
+
+			playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
+			console.log("Round #2");
+			console.log("Player's selection: " + playerSelection + ".");
+
+			computerSelection = computerPlay();
+			console.log("Computer's selection: " + computerSelection + ".");
+
+			console.log(playRound(playerSelection, computerSelection));
+
+			playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
+			console.log("Round #3");
+			console.log("Player's selection: " + playerSelection + ".");
+
+			computerSelection = computerPlay();
+			console.log("Computer's selection: " + computerSelection + ".");
+
+			console.log(playRound(playerSelection, computerSelection));
+
+			playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
+			console.log("Round #4");
+			console.log("Player's selection: " + playerSelection + ".");
+
+			computerSelection = computerPlay();
+			console.log("Computer's selection: " + computerSelection + ".");
+
+			console.log(playRound(playerSelection, computerSelection));
+
+			playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
+			console.log("Round #5");
+			console.log("Player's selection: " + playerSelection + ".");
+
+			computerSelection = computerPlay();
+			console.log("Computer's selection: " + computerSelection + ".");
+
+			console.log(playRound(playerSelection, computerSelection));
+
+			if (computerScore > playerScore) {
+				winner = "computer";
+			} else {
+				winner = "player";
+			}
+
+			let result = "Winner is " + winner + ". Your score is " + playerScore + " and computer's score is " + computerScore + ".";
+			return result;
+		}
 		
-		console.log(playRound(playerSelection, computerSelection));
+		console.log(game());
+		
 	</script>
 </body>
 </html>
