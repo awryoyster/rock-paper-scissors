@@ -9,13 +9,14 @@
 		let playerScore = 0;
 		let computerScore = 0;
 		let winner = "";
+		let roundCounter = 1;
 
 		function computerPlay() {
 			return choices[Math.floor(Math.random() * choices.length)];
 		}
 
 		let playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
-		console.log("Round #1");
+		console.log("Round #" + roundCounter);
 		console.log("Player's selection: " + playerSelection + ".");
 
 		let computerSelection = computerPlay();
@@ -24,8 +25,6 @@
 
 		function playRound(playerSelection, computerSelection) {
 			if (playerSelection === computerSelection) {
-				playerScore += 1;
-				computerScore += 1;
 				return "It's a tie! Play again.";
 			} else if (playerSelection === 'rock' && computerSelection === 'scissors') {
 				playerScore += 1;
@@ -51,41 +50,18 @@
 		function game() {
 			console.log(playRound(playerSelection, computerSelection));
 
-			playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
-			console.log("Round #2");
-			console.log("Player's selection: " + playerSelection + ".");
+			do {
+				roundCounter += 1;
+				playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
+				console.log("Round #" + roundCounter);
+				console.log("Player's selection: " + playerSelection + ".");
 
-			computerSelection = computerPlay();
-			console.log("Computer's selection: " + computerSelection + ".");
+				computerSelection = computerPlay();
+				console.log("Computer's selection: " + computerSelection + ".");
 
-			console.log(playRound(playerSelection, computerSelection));
+				console.log(playRound(playerSelection, computerSelection));
 
-			playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
-			console.log("Round #3");
-			console.log("Player's selection: " + playerSelection + ".");
-
-			computerSelection = computerPlay();
-			console.log("Computer's selection: " + computerSelection + ".");
-
-			console.log(playRound(playerSelection, computerSelection));
-
-			playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
-			console.log("Round #4");
-			console.log("Player's selection: " + playerSelection + ".");
-
-			computerSelection = computerPlay();
-			console.log("Computer's selection: " + computerSelection + ".");
-
-			console.log(playRound(playerSelection, computerSelection));
-
-			playerSelection = prompt('Pick rock, paper or scissors.').toLowerCase();
-			console.log("Round #5");
-			console.log("Player's selection: " + playerSelection + ".");
-
-			computerSelection = computerPlay();
-			console.log("Computer's selection: " + computerSelection + ".");
-
-			console.log(playRound(playerSelection, computerSelection));
+			} while (roundCounter < 5);
 
 			if (computerScore > playerScore) {
 				winner = "computer";
